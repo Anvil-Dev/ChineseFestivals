@@ -1,0 +1,9 @@
+[versions]
+lombok = "8.7.1"
+lunar = "1.7.7"
+
+[libraries]
+lunar = { group = "cn.6tail", name = "lunar", version.ref = "lunar" }
+
+[plugins]
+lombok = { id = "io.freefair.lombok", version.ref = "lombok" }

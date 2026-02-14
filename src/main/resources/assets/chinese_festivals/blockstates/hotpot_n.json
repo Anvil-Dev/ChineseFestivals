@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "": {
+      "model": "chinese_festivals:block/hotpot_n",
+      "y": 270
+    }
+  }
+}
