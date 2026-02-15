@@ -27,7 +27,8 @@ public class Fireworks extends Feature {
         LunarUtil.ShenXiao shenXiao = getShenXiao();
         //noinspection SwitchStatementWithTooFewBranches
         return switch (shenXiao) {
-            default -> BitMap.Loong;
+            case HORSE -> BitMap.HORSE;
+            default -> BitMap.LOONG;
         };
     }
 

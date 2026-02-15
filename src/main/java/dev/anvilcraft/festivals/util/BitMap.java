@@ -12,7 +12,8 @@ import java.util.Objects;
 public class BitMap {
     private static final Gson GSON = new GsonBuilder().disableHtmlEscaping().create();
 
-    public static final double[][] Loong = register("loong.json");
+    public static final double[][] LOONG = register("loong.json");
+    public static final double[][] HORSE = register("horse.json");
 
 
     @SuppressWarnings("SameParameterValue")

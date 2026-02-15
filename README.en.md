@@ -15,7 +15,7 @@
         * [ ] Rabbit
         * [X] Dragon
         * [ ] Snake
-        * [ ] Horse
+        * [X] Horse
         * [ ] Goat
         * [ ] Monkey
         * [ ] Rooster
