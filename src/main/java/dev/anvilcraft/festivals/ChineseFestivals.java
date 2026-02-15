@@ -11,7 +11,6 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.decoration.PaintingVariant;
 import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
@@ -34,7 +33,7 @@ import java.util.function.BiFunction;
 import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
-@Mod(ChineseFestivals.MOD_ID)
+@Mod(value = ChineseFestivals.MOD_ID, dist = Dist.CLIENT)
 public class ChineseFestivals {
     public static final String MOD_ID = "chinese_festivals";
     public static final Logger LOGGER = LogUtils.getLogger();
@@ -106,7 +105,6 @@ public class ChineseFestivals {
     @EventBusSubscriber(modid = ChineseFestivals.MOD_ID)
     public static class ModEvents {
         @SubscribeEvent
-        @OnlyIn(Dist.CLIENT)
         public static void register(RegisterEvent event) {
             for (Map.Entry<ResourceLocation, Supplier<PaintingVariant>> entry : IFeature.PAINTING_REGISTER.entrySet()) {
                 event.register(Registries.PAINTING_VARIANT, entry.getKey(), entry.getValue());
