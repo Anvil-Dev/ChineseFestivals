@@ -17,7 +17,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      BUILD_TYPE: snapshot
+      BUILD_TYPE: build
       VERSION_TYPE: alpha
     steps:
       - name: checkout
@@ -28,7 +28,7 @@ jobs:
         uses: christian-draeger/read-properties@1.1.1
         with:
           path: gradle.properties
-          properties: 'mod_id mod_name java_version upload'
+          properties: 'mod_id mod_name java_version modrinth_id curseforge_id upload'
 
       - name: Setup Java ${{ steps.properties.outputs.java_version }}
         uses: actions/setup-java@v3.6.0
@@ -77,13 +77,12 @@ jobs:
         if: ${{ steps.properties.outputs.upload }}
         continue-on-error: true
         with:
-          name: "${{ steps.properties.outputs.mod_name }} For NeoForge v${{ steps.version.outputs.version }}"
+          name: "${{ steps.properties.outputs.mod_name }} v${{ steps.version.outputs.version }}"
           version: ${{ steps.version.outputs.version }}
           game-versions: 1.21.1
           version-type: ${{ env.VERSION_TYPE }}
           java: 21
           fail-mode: skip
-          changelog: ${{ github.event.release.body }}
 
           modrinth-id: ${{ steps.properties.outputs.modrinth_id }}
           modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
