@@ -6,6 +6,7 @@ import net.minecraft.client.renderer.block.BlockModelShaper;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.client.resources.model.ModelManager;
 import net.minecraft.client.resources.model.ModelResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -24,11 +25,13 @@ public abstract class BlockModelShaperMixin {
 
     @Inject(method = "getBlockModel", at = @At("RETURN"), cancellable = true)
     private void getBlockModel(BlockState blockState, CallbackInfoReturnable<BakedModel> cir) {
-        for (Supplier<IFeature> feature : Features.FEATURES) {
-            if (feature.get().isNow()) {
-                ModelResourceLocation location = feature.get().getBlockReplace(blockState);
-                if (location == null) continue;
-                BakedModel bakedmodel = this.modelManager.getModel(location);
+        for (Supplier<IFeature> featureSupplier : Features.FEATURES) {
+            IFeature feature = featureSupplier.get();
+            if (feature.isNow()) {
+                ResourceLocation resourceLocation = feature.getBlockReplace(blockState);
+                ModelResourceLocation modelResourceLocation = IFeature.BLOCK_MODEL_REGISTER.get(resourceLocation);
+                if (modelResourceLocation == null) continue;
+                BakedModel bakedmodel = this.modelManager.getModel(modelResourceLocation);
                 cir.setReturnValue(bakedmodel);
                 return;
             }

@@ -18,7 +18,6 @@
     "ItemFrameRenderMixin",
     "LayerDefinitionsMixin",
     "LevelRendererMixin",
-    "ModelBakeryMixin",
     "PaintingRendererMixin",
     "RegistryAwareItemModelShaperMixin"
   ],

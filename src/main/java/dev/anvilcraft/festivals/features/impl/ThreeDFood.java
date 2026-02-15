@@ -2,12 +2,11 @@ package dev.anvilcraft.festivals.features.impl;
 
 import dev.anvilcraft.festivals.ChineseFestivals;
 import dev.anvilcraft.festivals.features.Feature;
-import dev.anvilcraft.festivals.features.IFeature;
 import dev.anvilcraft.festivals.festivals.Festivals;
 import dev.anvilcraft.festivals.festivals.IFestival;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
-import net.minecraft.world.food.Foods;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import org.jetbrains.annotations.NotNull;
@@ -20,8 +19,6 @@ import java.util.function.Supplier;
 
 public class ThreeDFood extends Feature {
     public static final TagKey<Item> HAS_PLATE = TagKey.create(Registries.ITEM, ChineseFestivals.of("has_plate"));
-    public static final Supplier<Item> APPLE_3D = IFeature.createItem("apple_3d", new Item.Properties().food(Foods.APPLE), Item::new);
-    public static final Supplier<Item> COOKIE_3D = IFeature.createItem("cookie_3d", new Item.Properties().food(Foods.COOKIE), Item::new);
 
     public ThreeDFood(String id, IFestival @NotNull ... enableTimes) {
         super(id, Festivals.QING_MING, Festivals.CHINESE_SPRING_FESTIVAL);
@@ -29,13 +26,15 @@ public class ThreeDFood extends Feature {
             super.enableTimes.clear();
             super.enableTimes.addAll(List.of(enableTimes));
         }
+        this.registerItemModel(ChineseFestivals.of("apple_3d"));
+        this.registerItemModel(ChineseFestivals.of("cookie_3d"));
     }
 
     @Override
-    public Map<Item, Supplier<Item>> get3DFoodReplace() {
-        Map<Item, Supplier<Item>> map = Collections.synchronizedMap(new HashMap<>());
-        map.put(Items.APPLE, APPLE_3D);
-        map.put(Items.COOKIE, COOKIE_3D);
+    public Map<Item, Supplier<ResourceLocation>> get3DFoodReplace() {
+        Map<Item, Supplier<ResourceLocation>> map = Collections.synchronizedMap(new HashMap<>());
+        map.put(Items.APPLE, () -> ChineseFestivals.of("apple_3d"));
+        map.put(Items.COOKIE, () -> ChineseFestivals.of("cookie_3d"));
         return map;
     }
 }

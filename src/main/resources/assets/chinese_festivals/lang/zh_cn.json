@@ -26,6 +26,14 @@
   "item.chinese_festivals.mooncake": "月饼",
   "item.chinese_festivals.tang_yuan": "汤圆",
   "item.chinese_festivals.qing_tuan": "青团",
-  "item.firework_star.shape.dragon": "龙形",
-  "item.chinese_festivals.zong_zi": "粽子"
+  "item.firework_star.shape.loong": "龙形",
+  "item.chinese_festivals.zong_zi": "粽子",
+  "painting.chinese_festivals.couplet_left.title": "对联（左）",
+  "painting.chinese_festivals.couplet_left.author": "Xe_Kr",
+  "painting.chinese_festivals.couplet_right.title": "对联（右）",
+  "painting.chinese_festivals.couplet_right.author": "Xe_Kr",
+  "painting.chinese_festivals.couplet_top.title": "对联（横批）",
+  "painting.chinese_festivals.couplet_top.author": "Xe_Kr",
+  "painting.chinese_festivals.couplet_fu.title": "福字",
+  "painting.chinese_festivals.couplet_fu.author": "Xe_Kr"
 }

@@ -5,7 +5,6 @@ import dev.anvilcraft.festivals.festivals.*;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class FeatureParser implements JsonSerializer<IFeature>, JsonDeserializer<IFeature> {

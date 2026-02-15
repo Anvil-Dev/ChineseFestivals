@@ -35,22 +35,26 @@ public class Features {
     public static final Supplier<IFeature> THREE_D_FOOD = new FeatureGetter("3d_food", ThreeDFood::new);
     public static final Supplier<IFeature> ZONG_ZI = new FeatureGetter("zong_zi", ZongZi::new);
     public static final Supplier<IFeature> LOONG_BOAT = new FeatureGetter("loong_boat", LoongBoat::new);
-    public static final List<Supplier<IFeature>> FEATURES = Collections.synchronizedList(new ArrayList<>() {{
-        add(COUPLETS);
-        add(JIAO_ZI);
-        add(FIREWORKS);
-        add(FLOWER_CAKE);
-        add(HOTPOTS);
-        add(LABA_CONGEE);
-        add(LANTERNS);
-        add(MOONCAKES);
-        add(PLATES);
-        add(TANG_YUAN);
-        add(QING_TUAN);
-        add(THREE_D_FOOD);
-        add(ZONG_ZI);
-        add(LOONG_BOAT);
-    }});
+    public static final List<Supplier<IFeature>> FEATURES;
+
+    static {
+        ArrayList<Supplier<IFeature>> list = new ArrayList<>();
+        list.add(COUPLETS);
+        list.add(JIAO_ZI);
+        list.add(FIREWORKS);
+        list.add(FLOWER_CAKE);
+        list.add(HOTPOTS);
+        list.add(LABA_CONGEE);
+        list.add(LANTERNS);
+        list.add(MOONCAKES);
+        list.add(PLATES);
+        list.add(TANG_YUAN);
+        list.add(QING_TUAN);
+        list.add(THREE_D_FOOD);
+        list.add(ZONG_ZI);
+        list.add(LOONG_BOAT);
+        FEATURES = Collections.synchronizedList(list);
+    }
 
     public static void refresh() {
         for (Supplier<IFeature> feature : FEATURES) {

@@ -12,20 +12,23 @@ import java.util.Objects;
 public class BitMap {
     private static final Gson GSON = new GsonBuilder().disableHtmlEscaping().create();
 
-    public static final double[][] DRAGON = register("dragon.json");
+    public static final double[][] Loong = register("loong.json");
 
 
     @SuppressWarnings("SameParameterValue")
     private static double[][] register(String filename) {
         try (
-                InputStream is = BitMap.class.getClassLoader().getResourceAsStream("assets/chinese_festivals/fireworks/" + filename);
-                InputStreamReader isr = new InputStreamReader(Objects.requireNonNull(is))
+            InputStream is = BitMap.class.getClassLoader().getResourceAsStream("assets/chinese_festivals/fireworks/" + filename);
+            InputStreamReader isr = new InputStreamReader(Objects.requireNonNull(is))
         ) {
             int[][] value = GSON.fromJson(isr, int[][].class);
             double[][] result = new double[value.length][2];
             for (int i = 0; i < value.length; i++) {
                 int[] pos = value[i];
-                result[i] = new double[] {0.004 * (pos[1] - 128), -0.004 * (pos[0] - 128)};
+                result[i] = new double[]{
+                    0.004 * (pos[1] - 128),
+                    -0.004 * (pos[0] - 128)
+                };
             }
 
             return result;

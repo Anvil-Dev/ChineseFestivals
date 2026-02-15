@@ -1,10 +1,10 @@
 package dev.anvilcraft.festivals.features.impl;
 
+import dev.anvilcraft.festivals.ChineseFestivals;
 import dev.anvilcraft.festivals.features.Feature;
-import dev.anvilcraft.festivals.features.IFeature;
 import dev.anvilcraft.festivals.festivals.Festivals;
 import dev.anvilcraft.festivals.festivals.IFestival;
-import net.minecraft.world.food.Foods;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import org.jetbrains.annotations.NotNull;
@@ -16,20 +16,19 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 public class QingTuan extends Feature {
-    public static final Supplier<Item> QING_TUAN = IFeature.createItem("qing_tuan", new Item.Properties().food(Foods.BAKED_POTATO), Item::new);
-
     public QingTuan(String id, IFestival @NotNull ... enableTimes) {
         super(id, Festivals.QING_MING);
         if (enableTimes.length > 0) {
             super.enableTimes.clear();
             super.enableTimes.addAll(List.of(enableTimes));
         }
+        this.registerItemModel(ChineseFestivals.of("qing_tuan"));
     }
 
     @Override
-    public Map<Item, Supplier<Item>> getItemReplace() {
-        Map<Item, Supplier<Item>> map = Collections.synchronizedMap(new HashMap<>());
-        map.put(Items.BAKED_POTATO, QING_TUAN);
+    public Map<Item, Supplier<ResourceLocation>> getItemReplace() {
+        Map<Item, Supplier<ResourceLocation>> map = Collections.synchronizedMap(new HashMap<>());
+        map.put(Items.BAKED_POTATO, () -> ChineseFestivals.of("qing_tuan"));
         return map;
     }
 

@@ -1,11 +1,10 @@
 package dev.anvilcraft.festivals.features.impl;
 
-import dev.anvilcraft.festivals.data.BlockModelData;
+import dev.anvilcraft.festivals.ChineseFestivals;
 import dev.anvilcraft.festivals.features.Feature;
-import dev.anvilcraft.festivals.features.IFeature;
 import dev.anvilcraft.festivals.festivals.Festivals;
 import dev.anvilcraft.festivals.festivals.IFestival;
-import net.minecraft.client.resources.model.ModelResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
@@ -20,38 +19,37 @@ import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 public class Hotpots extends Feature {
-    public static final Supplier<Item> HOTPOT_N_ITEM = IFeature.createItem("hotpot_n", new Item.Properties(), Item::new);
-    public static final Supplier<Item> HOTPOT_S_ITEM = IFeature.createItem("hotpot_s", new Item.Properties(), Item::new);
-    public static final ModelResourceLocation HOTPOT_N = IFeature.registerBlockModel(new BlockModelData("hotpot_n"));
-    public static final ModelResourceLocation HOTPOT_S = IFeature.registerBlockModel(new BlockModelData("hotpot_s"));
     public Hotpots(String id, IFestival... enableTimes) {
         super(id, Festivals.DONG_ZHI_FESTIVAL);
         if (enableTimes.length > 0) {
             super.enableTimes.clear();
             super.enableTimes.addAll(List.of(enableTimes));
         }
+        this.registerItemModel(ChineseFestivals.of("hotpot_n"));
+        this.registerItemModel(ChineseFestivals.of("hotpot_s"));
+        this.registerBlockModel(ChineseFestivals.of("hotpot_n"));
+        this.registerBlockModel(ChineseFestivals.of("hotpot_s"));
     }
 
     @Override
-    public @Nullable ModelResourceLocation getBlockReplace(BlockState blockState) {
+    public @Nullable ResourceLocation getBlockReplace(BlockState blockState) {
         if (blockState.is(Blocks.CAMPFIRE)) {
             if (blockState.getValue(CampfireBlock.LIT)) {
-                return HOTPOT_S;
+                return ChineseFestivals.of("hotpot_s");
             }
         } else if (blockState.is(Blocks.SOUL_CAMPFIRE)) {
             if (blockState.getValue(CampfireBlock.LIT)) {
-                return HOTPOT_N;
+                return ChineseFestivals.of("hotpot_n");
             }
-
         }
         return null;
     }
 
     @Override
-    public Map<Item, Supplier<Item>> getItemReplace() {
-        Map<Item, Supplier<Item>> map = Collections.synchronizedMap(new HashMap<>());
-        map.put(Items.CAMPFIRE, HOTPOT_S_ITEM);
-        map.put(Items.SOUL_CAMPFIRE, HOTPOT_N_ITEM);
+    public Map<Item, Supplier<ResourceLocation>> getItemReplace() {
+        Map<Item, Supplier<ResourceLocation>> map = Collections.synchronizedMap(new HashMap<>());
+        map.put(Items.CAMPFIRE, () -> ChineseFestivals.of("hotpot_s"));
+        map.put(Items.SOUL_CAMPFIRE, () -> ChineseFestivals.of("hotpot_n"));
         return map;
     }
 

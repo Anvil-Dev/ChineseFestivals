@@ -26,6 +26,14 @@
   "item.chinese_festivals.jiao_zi": "Jiao Zi",
   "item.chinese_festivals.tang_yuan": "Tang Yuan",
   "item.chinese_festivals.qing_tuan": "Qing Tuan",
-  "item.firework_star.shape.dragon": "Dragon-shaped",
-  "item.chinese_festivals.zong_zi": "Zong Zi"
+  "item.firework_star.shape.loong": "Dragon-shaped",
+  "item.chinese_festivals.zong_zi": "Zong Zi",
+  "painting.chinese_festivals.couplet_left.title": "Couplet (Left)",
+  "painting.chinese_festivals.couplet_left.author": "Xe_Kr",
+  "painting.chinese_festivals.couplet_right.title": "Couplet (Right)",
+  "painting.chinese_festivals.couplet_right.author": "Xe_Kr",
+  "painting.chinese_festivals.couplet_top.title": "Couplet (Horizontal)",
+  "painting.chinese_festivals.couplet_top.author": "Xe_Kr",
+  "painting.chinese_festivals.couplet_fu.title": "Couplet (Luck)",
+  "painting.chinese_festivals.couplet_fu.author": "Xe_Kr"
 }

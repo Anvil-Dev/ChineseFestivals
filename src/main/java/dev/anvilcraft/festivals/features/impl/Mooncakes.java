@@ -1,12 +1,10 @@
 package dev.anvilcraft.festivals.features.impl;
 
-import dev.anvilcraft.festivals.data.BlockModelData;
+import dev.anvilcraft.festivals.ChineseFestivals;
 import dev.anvilcraft.festivals.features.Feature;
-import dev.anvilcraft.festivals.features.IFeature;
 import dev.anvilcraft.festivals.festivals.Festivals;
 import dev.anvilcraft.festivals.festivals.IFestival;
-import net.minecraft.client.resources.model.ModelResourceLocation;
-import net.minecraft.world.food.Foods;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
@@ -22,43 +20,42 @@ import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 public class Mooncakes extends Feature {
-    public static final Supplier<Item> MOONCAKES_ITEM = IFeature.createItem("mooncakes", new Item.Properties().stacksTo(1), Item::new);
-    public static final Supplier<Item> MOONCAKE_ITEM = IFeature.createItem("mooncake", new Item.Properties().food(Foods.PUMPKIN_PIE), Item::new);
-    public static final ModelResourceLocation MOONCAKES_0 = IFeature.registerBlockModel(new BlockModelData("mooncakes"));
-    public static final ModelResourceLocation MOONCAKES_1 = IFeature.registerBlockModel(new BlockModelData("mooncakes_slice1"));
-    public static final ModelResourceLocation MOONCAKES_2 = IFeature.registerBlockModel(new BlockModelData("mooncakes_slice2"));
-    public static final ModelResourceLocation MOONCAKES_3 = IFeature.registerBlockModel(new BlockModelData("mooncakes_slice3"));
-    public static final ModelResourceLocation MOONCAKES_4 = IFeature.registerBlockModel(new BlockModelData("mooncakes_slice4"));
-    public static final ModelResourceLocation MOONCAKES_5 = IFeature.registerBlockModel(new BlockModelData("mooncakes_slice5"));
-    public static final ModelResourceLocation MOONCAKES_6 = IFeature.registerBlockModel(new BlockModelData("mooncakes_slice6"));
-
     public Mooncakes(String id, IFestival @NotNull ... enableTimes) {
         super(id, Festivals.MOON_FESTIVAL);
         if (enableTimes.length > 0) {
             super.enableTimes.clear();
             super.enableTimes.addAll(List.of(enableTimes));
         }
+        this.registerItemModel(ChineseFestivals.of("mooncakes"));
+        this.registerItemModel(ChineseFestivals.of("mooncake"));
+        this.registerBlockModel(ChineseFestivals.of("mooncakes"));
+        this.registerBlockModel(ChineseFestivals.of("mooncakes_slice1"));
+        this.registerBlockModel(ChineseFestivals.of("mooncakes_slice2"));
+        this.registerBlockModel(ChineseFestivals.of("mooncakes_slice3"));
+        this.registerBlockModel(ChineseFestivals.of("mooncakes_slice4"));
+        this.registerBlockModel(ChineseFestivals.of("mooncakes_slice5"));
+        this.registerBlockModel(ChineseFestivals.of("mooncakes_slice6"));
     }
 
     @Override
-    public Map<Item, Supplier<Item>> getItemReplace() {
-        Map<Item, Supplier<Item>> map = Collections.synchronizedMap(new HashMap<>());
-        map.put(Items.CAKE, MOONCAKES_ITEM);
-        map.put(Items.PUMPKIN_PIE, MOONCAKE_ITEM);
+    public Map<Item, Supplier<ResourceLocation>> getItemReplace() {
+        Map<Item, Supplier<ResourceLocation>> map = Collections.synchronizedMap(new HashMap<>());
+        map.put(Items.CAKE, () -> ChineseFestivals.of("mooncakes"));
+        map.put(Items.PUMPKIN_PIE, () -> ChineseFestivals.of("mooncake"));
         return map;
     }
 
     @Override
-    public @Nullable ModelResourceLocation getBlockReplace(BlockState blockState) {
+    public @Nullable ResourceLocation getBlockReplace(BlockState blockState) {
         if (blockState.is(Blocks.CAKE)) {
             return switch (blockState.getValue(CakeBlock.BITES)) {
-                case 1 -> MOONCAKES_1;
-                case 2 -> MOONCAKES_2;
-                case 3 -> MOONCAKES_3;
-                case 4 -> MOONCAKES_4;
-                case 5 -> MOONCAKES_5;
-                case 6 -> MOONCAKES_6;
-                default -> MOONCAKES_0;
+                case 1 -> ChineseFestivals.of("mooncakes_slice1");
+                case 2 -> ChineseFestivals.of("mooncakes_slice2");
+                case 3 -> ChineseFestivals.of("mooncakes_slice3");
+                case 4 -> ChineseFestivals.of("mooncakes_slice4");
+                case 5 -> ChineseFestivals.of("mooncakes_slice5");
+                case 6 -> ChineseFestivals.of("mooncakes_slice6");
+                default -> ChineseFestivals.of("mooncakes");
             };
         }
         return null;

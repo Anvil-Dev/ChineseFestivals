@@ -1,10 +1,10 @@
 package dev.anvilcraft.festivals.features.impl;
 
+import dev.anvilcraft.festivals.ChineseFestivals;
 import dev.anvilcraft.festivals.features.Feature;
-import dev.anvilcraft.festivals.features.IFeature;
 import dev.anvilcraft.festivals.festivals.Festivals;
 import dev.anvilcraft.festivals.festivals.IFestival;
-import net.minecraft.world.food.Foods;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 
@@ -15,20 +15,19 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 public class LabaCongee extends Feature {
-    public static final Supplier<Item> LABA_CONGEE = IFeature.createItem("laba_congee", new Item.Properties().food(Foods.MUSHROOM_STEW), Item::new);
-
     public LabaCongee(String id, IFestival... enableTimes) {
         super(id, Festivals.LABA_FESTIVAL);
         if (enableTimes.length > 0) {
             super.enableTimes.clear();
             super.enableTimes.addAll(List.of(enableTimes));
         }
+        this.registerItemModel(ChineseFestivals.of("laba_congee"));
     }
 
     @Override
-    public Map<Item, Supplier<Item>> getItemReplace() {
-        Map<Item, Supplier<Item>> map = Collections.synchronizedMap(new HashMap<>());
-        map.put(Items.MUSHROOM_STEW, LABA_CONGEE);
+    public Map<Item, Supplier<ResourceLocation>> getItemReplace() {
+        Map<Item, Supplier<ResourceLocation>> map = Collections.synchronizedMap(new HashMap<>());
+        map.put(Items.MUSHROOM_STEW, () -> ChineseFestivals.of("laba_congee"));
         return map;
     }
 

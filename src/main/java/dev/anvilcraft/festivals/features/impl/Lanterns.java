@@ -1,11 +1,9 @@
 package dev.anvilcraft.festivals.features.impl;
 
-import dev.anvilcraft.festivals.data.BlockModelData;
+import dev.anvilcraft.festivals.ChineseFestivals;
 import dev.anvilcraft.festivals.features.Feature;
-import dev.anvilcraft.festivals.features.IFeature;
 import dev.anvilcraft.festivals.festivals.Festivals;
 import dev.anvilcraft.festivals.festivals.IFestival;
-import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
@@ -17,24 +15,23 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 public class Lanterns extends Feature {
-    public static final ModelResourceLocation LANTERN = IFeature.registerBlockModel(new BlockModelData("lantern_hanging"));
-    public static final ModelResourceLocation TALL_LANTERN = IFeature.registerBlockModel(new BlockModelData("tall_lantern_hanging"));
-
     public Lanterns(String id, IFestival... enableTimes) {
         super(id, Festivals.CHINESE_SPRING_FESTIVAL, Festivals.LANTERN_FESTIVAL);
         if (enableTimes.length > 0) {
             super.enableTimes.clear();
             super.enableTimes.addAll(List.of(enableTimes));
         }
+        this.registerBlockModel(ChineseFestivals.of("lantern_hanging"));
+        this.registerBlockModel(ChineseFestivals.of("tall_lantern_hanging"));
     }
 
     @Override
-    public @Nullable ModelResourceLocation getBlockReplace(BlockState blockState) {
+    public @Nullable ResourceLocation getBlockReplace(BlockState blockState) {
         if (blockState.is(Blocks.LANTERN) && blockState.getValue(LanternBlock.HANGING)) {
-            return LANTERN;
+            return ChineseFestivals.of("lantern_hanging");
         }
         if (blockState.is(Blocks.SOUL_LANTERN) && blockState.getValue(LanternBlock.HANGING)) {
-            return TALL_LANTERN;
+            return ChineseFestivals.of("tall_lantern_hanging");
         }
         return null;
     }

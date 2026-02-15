@@ -1,10 +1,10 @@
 package dev.anvilcraft.festivals.features.impl;
 
+import dev.anvilcraft.festivals.ChineseFestivals;
 import dev.anvilcraft.festivals.features.Feature;
-import dev.anvilcraft.festivals.features.IFeature;
 import dev.anvilcraft.festivals.festivals.Festivals;
 import dev.anvilcraft.festivals.festivals.IFestival;
-import net.minecraft.world.food.Foods;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import org.jetbrains.annotations.NotNull;
@@ -16,21 +16,20 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 public class ZongZi extends Feature {
-    public static final Supplier<Item> ZONG_ZI = IFeature.createItem("zong_zi", new Item.Properties().food(Foods.PUFFERFISH), Item::new);
-
     public ZongZi(String id, IFestival @NotNull ... enableTimes) {
         super(id, Festivals.LOONG_BOAT_FESTIVAL);
         if (enableTimes.length > 0) {
             super.enableTimes.clear();
             super.enableTimes.addAll(List.of(enableTimes));
         }
+        this.registerItemModel(ChineseFestivals.of("zong_zi"));
     }
 
     @Override
-    public Map<Item, Supplier<Item>> getItemReplace() {
-        return new HashMap<>() {{
-            this.put(Items.PUMPKIN_PIE, ZongZi.ZONG_ZI);
-        }};
+    public Map<Item, Supplier<ResourceLocation>> getItemReplace() {
+        HashMap<Item, Supplier<ResourceLocation>> map = new HashMap<>();
+        map.put(Items.PUMPKIN_PIE, () -> ChineseFestivals.of("zong_zi"));
+        return map;
     }
 
     @Override

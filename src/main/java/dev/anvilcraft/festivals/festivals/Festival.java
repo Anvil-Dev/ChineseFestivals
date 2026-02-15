@@ -1,6 +1,7 @@
 package dev.anvilcraft.festivals.festivals;
 
 import dev.anvilcraft.festivals.ChineseFestivals;
+import lombok.Getter;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -9,9 +10,13 @@ import java.util.function.Supplier;
 
 public class Festival implements IFestival {
     protected final String id;
+    @Getter
     protected final int startMonth;
+    @Getter
     protected final int startDay;
+    @Getter
     protected final int endMonth;
+    @Getter
     protected final int endDay;
     protected boolean flag = false;
 
@@ -30,22 +35,6 @@ public class Festival implements IFestival {
     @Override
     public String getId() {
         return this.id;
-    }
-
-    public int getStartMonth() {
-        return startMonth;
-    }
-
-    public int getEndMonth() {
-        return endMonth;
-    }
-
-    public int getStartDay() {
-        return startDay;
-    }
-
-    public int getEndDay() {
-        return endDay;
     }
 
     @Override

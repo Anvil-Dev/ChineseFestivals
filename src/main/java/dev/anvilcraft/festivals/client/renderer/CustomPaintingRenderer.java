@@ -20,6 +20,8 @@ public class CustomPaintingRenderer {
         TextureAtlasSprite textureAtlasSprite,
         Vertex vertex
     ) {
+        poseStack.pushPose();
+        poseStack.scale(1f / 16f, 1f / 16f, 1f / 16f);
         PoseStack.Pose pose = poseStack.last();
         float f = (float) (-i) / 2.0F;
         float g = (float) (-j) / 2.0F;
@@ -65,6 +67,7 @@ public class CustomPaintingRenderer {
                 vertex.run(pose, vertexConsumer, aa, ac, aj, al, DebugCommands.test, 0, 0, -1, ah);
             }
         }
+        poseStack.popPose();
     }
 
     @FunctionalInterface

@@ -25,17 +25,21 @@ public class Festivals {
     // 腊八节
     public static final IFestival QING_MING = new SolarTermFestival("qing_ming", SolarTermFestival.SolarTerm.QING_MING);
 
-    public static final List<IFestival> FESTIVALS = Collections.synchronizedList(new ArrayList<>() {{
-        this.add(CHINESE_SPRING_FESTIVAL);
-        this.add(LANTERN_FESTIVAL);
-        this.add(LOONG_BOAT_FESTIVAL);
-        this.add(QIXI_FESTIVAL);
-        this.add(MOON_FESTIVAL);
-        this.add(DOUBLE_NINTH_FESTIVAL);
-        this.add(DONG_ZHI_FESTIVAL);
-        this.add(LABA_FESTIVAL);
-        this.add(QING_MING);
-    }});
+    public static final List<IFestival> FESTIVALS;
+
+    static {
+        ArrayList<IFestival> list = new ArrayList<>();
+        list.add(CHINESE_SPRING_FESTIVAL);
+        list.add(LANTERN_FESTIVAL);
+        list.add(LOONG_BOAT_FESTIVAL);
+        list.add(QIXI_FESTIVAL);
+        list.add(MOON_FESTIVAL);
+        list.add(DOUBLE_NINTH_FESTIVAL);
+        list.add(DONG_ZHI_FESTIVAL);
+        list.add(LABA_FESTIVAL);
+        list.add(QING_MING);
+        FESTIVALS = Collections.synchronizedList(list);
+    }
 
     public static void refresh() {
         FESTIVALS.stream().parallel().forEach(IFestival::refresh);

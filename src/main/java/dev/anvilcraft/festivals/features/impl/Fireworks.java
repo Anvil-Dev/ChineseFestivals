@@ -22,13 +22,13 @@ public class Fireworks extends Feature {
 
     @Override
     public double[][] getFireworkParticle() {
-        return BitMap.DRAGON;
+        return BitMap.Loong;
     }
 
     @Override
     public Map<String, Supplier<String>> getTranslationReplace() {
         Map<String, Supplier<String>> map = Collections.synchronizedMap(new HashMap<>());
-        map.put("item.minecraft.firework_star.shape.creeper", () -> "item.firework_star.shape.dragon");
+        map.put("item.minecraft.firework_star.shape.creeper", () -> "item.firework_star.shape.loong");
         return map;
     }
 }
