@@ -42,7 +42,7 @@ def json_to_bitmap(json_source, output_filename="output.png", margin=10):
     # 3. 创建画布
     # mode='1' 表示 1位像素 (黑白), color=1 表示默认背景为白色
     # 如果你想要RGB模式，可以使用 mode='RGB', color='white'
-    img = Image.new(mode='1', size=(width, height), color=1)
+    img = Image.new(mode='RGBA', size=(width, height), color=(0, 0, 0, 0))
 
     # 4. 绘制像素
     # 获取像素操作对象
@@ -55,7 +55,7 @@ def json_to_bitmap(json_source, output_filename="output.png", margin=10):
 
         # 确保坐标在画布范围内
         if 0 <= draw_x < width and 0 <= draw_y < height:
-            pixels[draw_x, draw_y] = 0  # 0 表示黑色
+            pixels[draw_x, draw_y] = (0, 0, 0, 255)  # 0 表示黑色
         else:
             print(f"警告: 点 [{x}, {y}] 超出画布范围，已跳过。")
 
