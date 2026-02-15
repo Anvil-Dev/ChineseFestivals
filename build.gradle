@@ -34,7 +34,7 @@ repositories {
 }
 
 base {
-    archivesName = mod_id
+    archivesName = "${project.name}-${project.minecraft_version}"
 }
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(21)
@@ -161,6 +161,7 @@ jar {
     from(project.file("LICENSE"))
     from(project.file("ASSETS_LICENSE"))
     from(project.file("README.md"))
+    from(project.file("README.en.md"))
 }
 
 idea {

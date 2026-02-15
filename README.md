@@ -1,4 +1,4 @@
-# 中国节 | ChineseFestivals
+# 中国节 | [ChineseFestivals](./README.en.md)
 
 > 在游戏内为中国节日添加彩蛋
 
