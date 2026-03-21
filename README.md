@@ -1,4 +1,10 @@
+<div align="center">
+
 # 中国节 | [ChineseFestivals](./README.en.md)
+
+<img src=".idea/icon.png" style="width: 128px; height: 128px" alt="ChineseFestivals Logo">
+
+</div>
 
 > 在游戏内为中国节日添加彩蛋
 

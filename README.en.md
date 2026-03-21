@@ -1,4 +1,10 @@
+<div align="center">
+
 # ChineseFestivals | [中国节](./README.md)
+
+<img src=".idea/icon.png" style="width: 128px; height: 128px" alt="ChineseFestivals Logo">
+
+</div>
 
 > Adds in-game Easter eggs for Chinese festivals
 
